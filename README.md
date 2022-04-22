@@ -5,7 +5,7 @@ che interagendo facessero muovere un'AlphaBot in base a dei sensori. Lo scopo
 finale era quello di riuscire a completare un percorso a ferro di cavallo formato  
 da alcune scatole di cartone.
 
-Librerie usate:
+**Librerie usate:**
 - RPi.GPIO
 - time
 - flask
