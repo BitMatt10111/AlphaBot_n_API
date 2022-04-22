@@ -15,11 +15,11 @@ da alcune scatole di cartone.
 ## API Server
 
 ### sensor_api
-questa funzione associata alla pagina */api/v1/sensors/obstacles* legge i valori tramite  
+Questa funzione associata alla pagina */api/v1/sensors/obstacles* legge i valori tramite  
 `GPIO.input(DR)` e `GPIO.input(DL)` e la returna sotto forma di dizionario.  
 
 ### motors_api
-questa funzione preleva dall'url i valori dati dal client pwmR, pwmL, time e  
+Questa funzione preleva dall'url i valori dati dal client pwmR, pwmL, time e  
 le usa per muovere l'Alphabot.
 
 ## Client
