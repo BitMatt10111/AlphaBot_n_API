@@ -1,4 +1,3 @@
-import time
 import requests
 import random
 
@@ -24,7 +23,6 @@ while True:
         print("destra")
         sel=random.randint(0,1)
     elif json["left"]==0 and json["right"]==0:
-        
         if sel==0:
             pwmL=-25
             pwmR=0
@@ -33,5 +31,3 @@ while True:
             pwmL=0
         print("stop")
     x=requests.get(f"http://192.168.0.141:5000/api/v1/motors/both?pwmL={pwmL}&pwmR={-pwmR}&time={500}")
-    
-    #time.sleep(1000)
