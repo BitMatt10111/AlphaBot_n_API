@@ -1,10 +1,4 @@
-import socket as sck
-import threading as thr 
 import time
-import random
-import string
-import sqlite3
-from datetime import datetime
 import RPi.GPIO as GPIO
 from flask import Flask, render_template, request, redirect, url_for, make_response
 app = Flask(__name__)
@@ -90,31 +84,6 @@ class AlphaBot(object): #classe per gestire il moviemento dell'AlphaBot
         GPIO.output(self.IN4, GPIO.HIGH)
         time.sleep(sec) #continua a muoversi per la durata del moviemento indicata come parametro
         self.stop() #dopo aver concluso il movimento si ferma
-    
-    def runcommand(self,command):
-        print(command)
-        conn = sqlite3.connect("db.db") #crea una "connessione" col database
-        cur = conn.cursor()
-        cur.execute(f"SELECT sequenza FROM movements WHERE nome = '{command}'") #esegue la query indicata per trovare la sequenza giusta tramite il nome
-        comandi = cur.fetchall()[0][0]
-        l_comandi=comandi.split(":") #divide la sequenza in singoli comendi [movimento:tempo]
-        for comando in l_comandi:
-            c=comando[0] #preleva dalla stringa il movimento
-            print(c)
-            if c!="S":
-                seconds=float(comando[1:]) #preleva dalla stringa i secondi e li mette float
-            if c[0] == "F": #se il comando = F -> va avanti
-                self.forward(seconds)
-            elif c[0] == "S": #se il comando = S -> si ferma
-                self.stop()
-            elif c[0] == "B": #se il comando = B -> va indietro
-                self.backward(seconds)
-            elif c[0] == "R": #se il comando = R -> gira a destra
-                self.right(seconds)
-            elif c[0] == "L":  #se il comando = L -> gira a sinistra
-                self.left(seconds)
-            else:
-                print("Errore di sintassi")
 	    
     def set_pwm_a(self, value):
         self.PA = value
@@ -155,7 +124,7 @@ def sensors_api():
 def motors_api():
     pwmL=int(request.args["pwmL"])
     pwmR=int(request.args["pwmR"])
-    t=int(request.args["time"])
+    #t=int(request.args["time"])
     a.set_motor(pwmL,pwmR)
 
 if __name__=="__main__":
